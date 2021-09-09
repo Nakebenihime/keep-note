@@ -14,7 +14,6 @@ import java.util.UUID;
 
 @Slf4j
 @Component
-@ConditionalOnProperty(name = "database.persistance", havingValue = "true")
 public class Seeder implements CommandLineRunner {
 
     private final NotebookRepository noteBookRepository;
