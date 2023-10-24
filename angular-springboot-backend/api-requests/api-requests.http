@@ -1,0 +1,56 @@
+### API NOTEBOOK MANAGEMENT ###
+
+# GET ALL NOTEBOOKS / OK
+GET {{host-url-note-api}}//notebooks
+
+### GET NOTE BY ID / OK
+GET {{host-url-note-api}}//notebooks/9fdebb0c-e1a7-4b03-acee-158c8afaed33
+
+### POST A NOTEBOOK / OK
+POST {{host-url-note-api}}/notebooks
+Content-Type: application/json
+
+{
+  "name": "PERSONAL"
+}
+
+### DELETE A NOTEBOOK / OK
+DELETE {{host-url-note-api}}/notebooks/99cbfeda-403d-43bf-928e-f2829f50fbb5
+
+### API NOTE MANAGEMENT ###
+
+### GET ALL NOTES / OK
+GET {{host-url-note-api}}//notes
+
+### GET NOTE BY ID / OK
+GET {{host-url-note-api}}//notes/a4cc161c-9fa4-49a5-898e-ac72a9262c8b
+
+### GET ALL NOTES FROM A NOTEBOOK ID
+GET {{host-url-note-api}}//notebooks/9fdebb0c-e1a7-4b03-acee-158c8afaed33/notes
+
+### POST A NOTE / OK
+POST {{host-url-note-api}}//notes
+Content-Type: application/json
+
+{
+  "title": "Another Note",
+  "text": "Another Note Description",
+  "notebookId": "9fdebb0c-e1a7-4b03-acee-158c8afaed33"
+}
+
+### DELETE A NOTE / OK
+DELETE {{host-url-note-api}}//notes/a4cc161c-9fa4-49a5-898e-ac72a9262c8b
+
+### API FEEDBACK MANAGEMENT ###
+
+### POST A FEEDBACK
+
+POST {{host-url-feedback-api}}//feedback
+Content-Type: application/json
+
+{
+  "name": "xxx",
+  "email": "xxx-xxx@xxx.fr",
+  "feedback": "Your application is so cool"
+}
+

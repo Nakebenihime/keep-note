@@ -1,0 +1,6 @@
+database:
+  persistance: false
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongodb:27017/notedb

@@ -1,0 +1,72 @@
+<div class="container">
+  <!-- NOTE MENU -->
+  <div class="row" style="margin-top: 12px;">
+    <div class="col-md-8">
+      <input [(ngModel)]="searchFilter"
+             class="form-control"
+             placeholder="Search notes ..."
+             style="width: 100%;"
+             type="text">
+    </div>
+    <div class="col-md-4">
+      <button (click)="createNotebook()"
+              class="btn btn-info pull-right"
+              style="margin-left: 12px;"
+              type="button">
+        <i class="fa fa-plus"></i> New notebook
+      </button>
+      <button (click)="createNote(selectedNotebook.id)"
+              [disabled]="selectedNotebook == null"
+              class="btn btn-warning pull-right"
+              style="margin-left: 12px;"
+              type="button">
+        <i class="fa fa-plus"></i> New note
+      </button>
+    </div>
+  </div>
+
+  <!-- NOTE CONTENT -->
+  <div class="row" style="margin-top: 28px;">
+    <!-- NOTEBOOKS MENU -->
+    <div class="col-md-3">
+      <br>
+      <div class="list-group list-group-flush">
+        <a (click)="showAllNotes()" class="list-group-item list-group-item-action">
+          <i class="fa fa-book"></i>&nbsp;ALL
+        </a>
+        <!-- NOTEBOOK LIST -->
+        <a (click)="selectNotebook(notebook)" *ngFor="let notebook of notebooks"
+           class="list-group-item list-group-item-action">
+          <i class="fa fa-book"></i>&nbsp;
+          <input (change)="updateNotebook(notebook)"
+                 [(ngModel)]="notebook.name"
+                 class="input-label"
+                 style="width: 80%"
+                 type="text"/>
+          <a (click)="deleteNotebook(notebook)" class="pull-right text-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </a>
+      </div>
+    </div>
+
+    <!-- NOTES PANEL -->
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- MESSAGE IF THERE ARE NO NOTES -->
+          <h4 *ngIf="selectedNotebook!=null">{{selectedNotebook.name}}</h4>
+          <h4 *ngIf="selectedNotebook==null">All notes</h4>
+          <p *ngIf="this.notes.length === 0"> There are no notes to display in this notebook :(</p>
+        </div>
+        <div class="row">
+          <!-- NOTE LIST -->
+          <app-note (noteDeleted)="deleteNote($event)"
+                    (noteUpdated)="updateNote($event)"
+                    *ngFor="let n of notes | noteTextFilter:searchFilter"
+                    [note]="n"></app-note>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

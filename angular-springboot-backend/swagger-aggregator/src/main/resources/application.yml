@@ -1,0 +1,22 @@
+server:
+  port: 8282
+management:
+  info:
+    build:
+      enabled: true
+    git:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+documentation:
+  base-url: http://localhost
+  swagger:
+    services:
+      - name: note
+        url: ${documentation.base-url}:8080/v2/api-docs?group=note-v1
+        version: 2.0
+      - name: email
+        url: ${documentation.base-url}:8181/v2/api-docs?group=email-v1
+        version: 2.0

@@ -1,0 +1,7 @@
+#ignore these files and directories while building
+**/*.md
+**/*.iml
+*/.git
+dist*
+node_modules*
+

@@ -1,0 +1,24 @@
+server:
+  port: 8181
+management:
+  info:
+    build:
+      enabled: true
+    git:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongodb:27017/notedb
+  mail:
+    host: smtp.mailtrap.io
+    password:
+    port: 2525
+    username:
+
+mailtrap:
+  inbox:

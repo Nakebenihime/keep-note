@@ -1,0 +1,6 @@
+#ignore these files and directories while building
+**/*.md
+**/*.iml
+*/.git
+api-requests*
+**/*.idea

@@ -1,0 +1,57 @@
+version: '3.7'
+services:
+  note-service:
+    build:
+      context: ./angular-springboot-backend
+      dockerfile: note/Dockerfile
+    hostname: backend-note
+    container_name: backend-note
+    image: backend-note
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+  email-service:
+    build:
+      context: ./angular-springboot-backend
+      dockerfile: email/Dockerfile
+    hostname: backend-email
+    container_name: backend-email
+    image: backend-email
+    restart: always
+    ports:
+     - 8181:8181
+  swagger-aggregator-service:
+    build:
+      context: ./angular-springboot-backend
+      dockerfile: swagger-aggregator/Dockerfile
+    hostname: backend-swagger-aggregator
+    container_name: backend-swagger-aggregator
+    image: backend-swagger-aggregator
+    restart: always
+    ports:
+      - 8282:8282
+    depends_on:
+      - email-service
+      - note-service
+  mongodb:
+    hostname: mongodb
+    container_name: mongodb
+    image: mongo
+    ports:
+      - 27000:27017
+    environment:
+      MONGO_INITDB_DATABASE: notedb
+  angular-ui:
+    build:
+      context: ./angular-springboot-frontend
+      dockerfile: Dockerfile
+    hostname: frontend-angular-ui
+    container_name: frontend-angular-ui
+    restart: always
+    ports:
+    - 80:80
+    depends_on:
+      - email-service
+      - note-service
